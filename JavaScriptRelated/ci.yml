@@ -1,0 +1,44 @@
+name: CI
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+    task:
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3
+      - uses: isbang/compose-action@v1.5.1
+        with:
+          compose-file: "./docker/docker-compose-ci.yml"
+          down-flags: "--volumes"
+        env:
+          ACCESS_TOKEN_KEY: ${{ secrets.ACCESS_TOKEN_KEY }}
+          ADMIN_EMAIL: ${{ secrets.ADMIN_EMAIL }}
+          EASYPOST_KEY: ${{ secrets.EASYPOST_KEY }}
+          EMAIL_TOKEN_KEY: ${{ secrets.EMAIL_TOKEN_KEY }}
+          JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}
+          MAILTRAP_HOST: ${{ secrets.MAILTRAP_HOST }}
+          MAILTRAP_PASSWORD: ${{ secrets.MAILTRAP_PASSWORD }}
+          MAILTRAP_PORT: ${{ secrets.MAILTRAP_PORT }}
+          MAILTRAP_USER: ${{ secrets.MAILTRAP_USER }}
+          MONGODB_ATLAS_URL: ${{ secrets.MONGODB_ATLAS_URL }}
+          MONGODB_VIRTUAL_URL: ${{ secrets.MONGODB_VIRTUAL_URL }}
+          NGINX_BASE_URL: ${{ secrets.NGINX_BASE_URL }}
+          NGINX_VIRTUAL_URL: ${{ secrets.NGINX_VIRTUAL_URL }}
+          PASSWORD_HASH_KEY: ${{ secrets.PASSWORD_HASH_KEY }}
+          PASSWORD_RESET_TOKEN_KEY: ${{ secrets.PASSWORD_RESET_TOKEN_KEY }}
+          PORT: ${{ secrets.PORT }}
+          PORTAL_RETURN_URL: ${{ secrets.PORTAL_RETURN_URL }}
+          REACT_APP_ADMIN_EMAIL: ${{ secrets.REACT_APP_ADMIN_EMAIL }}
+          REACT_APP_GOOGLE_CLIENT_ID: ${{ secrets.REACT_APP_GOOGLE_CLIENT_ID }}
+          REACT_APP_GOOGLE_SECRET: ${{ secrets.REACT_APP_GOOGLE_SECRET }}
+          REFRESH_TOKEN_KEY: ${{ secrets.REFRESH_TOKEN_KEY }}
+          REFRESH_TOKEN_KEYPLUS: ${{ secrets.REFRESH_TOKEN_KEYPLUS }}
+          SESSION_SECRET_KEY: ${{ secrets.SESSION_SECRET_KEY }}
+          SIGNING_SECRET: ${{ secrets.SIGNING_SECRET }}
+          STRIPE_KEY: ${{ secrets.STRIPE_KEY }}
+          WHSEC: ${{ secrets.WHSEC }}
+

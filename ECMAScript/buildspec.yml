@@ -1,0 +1,34 @@
+version: 0.2
+
+env:
+  parameter-store:
+    PORT: "/cicd-demo/port"
+    DOCKER_REGISTRY_USERNAME: "/cicd-demo/docker-registry/username"
+    DOCKER_REGISTRY_PASSWORD: "/cicd-demo/docker-registry/password"
+    DOCKER_REGISTRY_URL: "/cicd-demo/docker-registry/url"
+    
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+        - touch .env
+        - echo "PORT=$PORT" >> .env
+        - npm install
+    
+  build:
+    commands:
+        - echo Build started on `date`
+        - echo Building docke image..
+        - echo "$DOCKER_REGISTRY_PASSWORD" | docker login -u "$DOCKER_REGISTRY_USERNAME" --password-stdin "$DOCKER_REGISTRY_URL"
+        - docker build -t "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/cicd-demo:latest" .
+        - docker push "$DOCKER_REGISTRY_URL/$DOCKER_REGISTRY_USERNAME/cicd-demo:latest"
+  
+  post_build:
+    commands:
+        - echo "Build is Successful"
+artifacts:
+  files:
+    - '**/*'
+  discard-paths: yes

@@ -1,0 +1,23 @@
+
+apiVersion: v1
+kind: Role
+metadata:
+  name: dev-role
+  namespace: developers
+rules:
+- apiGroup: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "update"]  
+      
+---
+apiVersion: v1
+kind: RoleBinding
+metadata:
+  name: dev-role-binding
+  namespace: developers
+subjects:
+- kind: User
+  name: devteam
+roleRefs:
+- kind: Role
+  name: dev-role

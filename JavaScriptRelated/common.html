@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice</title>
+    <style>
+        .wrapper{
+            font-family: sans-serif;
+            max-width: 250px;
+            margin: auto;
+            margin-top: 50px;
+            border: 1px solid grey;
+            padding: 20px 20px 20px 30px;
+            
+        }
+        .wrapper p{
+            margin: 0;
+            font-size: 17px;
+            margin-bottom: 10px;
+        }
+        .wrapper h4{
+            margin: 0;
+        }
+        .wrapper input{
+            width: 200px;
+            height: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <h4>Rubbles Tech Calculator</h4>
+        <p id="version"></p>
+        <input type="text" id="num" />
+        <input type="text" id="chase"/>
+        <p id="show" style="margin: 0;"></p>
+        <button id="btn">Click Me</button>
+    </div>
+    <script src="./model.js"></script>
+    <script type="module" src="./chase.js"></script>
+    <script type="module" src="./common.js"></script>
+    <script type="module" src="./calculate.js"></script>
+</body>
+
+</html>
